@@ -67,6 +67,17 @@ cinder_type_update_{{ backend_name }}:
   - require:
     - cmd: cinder_type_create_{{ backend_name }}
 
+{%- if backend.engine == "ceph" %}
+
+{% set ceph_backend_mon_host = pillar['cinder']['controller']['backend']['ceph_backend']['ceph_host'] %}
+{% set ceph_backend_mon_port = pillar['cinder']['controller']['backend']['ceph_backend']['ceph_port'] %}
+{% set ceph_cluster = pillar['cinder']['controller']['backend']['ceph_backend']['cluster'] %}
+{% set ceph_user = pillar['cinder']['controller']['backend']['ceph_backend']['user'] %}
+{% set ceph_key = pillar['cinder']['controller']['backend']['ceph_backend']['client_cinder_key'] %}
+{% include "ceph_backend/init.sls" %}
+
+{%- endif %}
+
 {%- endfor %}
 
 {%- endif %}

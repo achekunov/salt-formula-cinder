@@ -256,6 +256,9 @@ Cinder setup with CEPH
             user: cinder
             secret_uuid: da74ccb7-aa59-1721-a172-0006b1aa4e3e
             client_cinder_key: AQDOavlU6BsSJhAAnpFR906mvdgdfRqLHwu0Uw==
+            cluster: ${_param:ceph_cluster}
+            ceph_host: ${_param:ceph_backend_mon_host}
+            ceph_port: ${_param:ceph_backend_mon_port}
 
 http://ceph.com/docs/master/rbd/rbd-openstack/
 
